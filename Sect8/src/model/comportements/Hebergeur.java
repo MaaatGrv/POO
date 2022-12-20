@@ -2,6 +2,8 @@ package model.comportements;
 
 import model.agents.Animal;
 
+import java.awt.Point;
+
 /**
  * un hébergeur peut accueillir un animal
  * @author bruno
@@ -23,4 +25,6 @@ public interface Hebergeur {
 	 * @return
 	 */
 	public boolean accueillir(Animal a);
+
+	public void supprimer(Animal a);
 }

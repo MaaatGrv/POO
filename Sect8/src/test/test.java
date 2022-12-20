@@ -12,6 +12,7 @@ import model.decor.Ruche;
 import model.agents.Sexe;
 import model.agents.animaux.Abeille;
 import model.agents.animaux.AbeilleDomestique;
+import model.world;
 public class test {
     public static void main(String[] args) {
         // Test aggraverEtat with the class Abeille
@@ -49,25 +50,25 @@ public class test {
         // ruche.accueillir(abeille3);
         // System.out.println(ruche);
 
-        // Test position abeille
-        Abeille abeille = new AbeilleDomestique(Sexe.Male, new Point(10, 0));
-        System.out.println(abeille);
-        // On crée une ruche et ajoute l'abeille dedans
-        Ruche ruche = new Ruche(new Point(0, 0));
-        ruche.accueillir(abeille);
-        System.out.println(ruche);
-        // On crée une autre abeille
-        Abeille abeille2 = new AbeilleDomestique(Sexe.Femelle, new Point(15, 0));
-        System.out.println(abeille2);
-        Abeille abeille3 = new AbeilleDomestique(Sexe.Male, new Point(15, 0));
-        System.out.println(abeille3);
-        Abeille abeille4 = new AbeilleDomestique(Sexe.Male, new Point(15, 0));
-        System.out.println(abeille4);
-        // On ajoute l'abeille2 dans la ruche
-        ruche.accueillir(abeille3);
-        ruche.accueillir(abeille4);
-        ruche.accueillir(abeille2);
-        System.out.println(ruche);
+        // // Test position abeille
+        // Abeille abeille = new AbeilleDomestique(Sexe.Male, new Point(10, 0));
+        // System.out.println(abeille);
+        // // On crée une ruche et ajoute l'abeille dedans
+        // Ruche ruche = new Ruche(new Point(0, 0));
+        // ruche.accueillir(abeille);
+        // System.out.println(ruche);
+        // // On crée une autre abeille
+        // Abeille abeille2 = new AbeilleDomestique(Sexe.Femelle, new Point(15, 0));
+        // System.out.println(abeille2);
+        // Abeille abeille3 = new AbeilleDomestique(Sexe.Male, new Point(15, 0));
+        // System.out.println(abeille3);
+        // Abeille abeille4 = new AbeilleDomestique(Sexe.Male, new Point(15, 0));
+        // System.out.println(abeille4);
+        // // On ajoute l'abeille2 dans la ruche
+        // ruche.accueillir(abeille3);
+        // ruche.accueillir(abeille4);
+        // ruche.accueillir(abeille2);
+        // System.out.println(ruche);
 
         // // Test récuperer id abeille
         // Abeille abeille = new AbeilleDomestique(Sexe.Male, new Point(10, 0));
@@ -75,5 +76,6 @@ public class test {
         // // Print the id of the abeille
         // System.out.println(abeille.getId());
 
+        // Test de rencontre
     }
 }

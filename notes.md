@@ -122,3 +122,52 @@ Un mutateur rpeut être privé
 
 ## 10.2.1. Comparable
 
+1. Implémentez l'interface qui permet de lever cette erreur.
+La comparaison se fera sur l'id de l'Agent.
+2. Était-ce une bonne idée de choisir un TreeSet plutôt qu'un HashSet pour agents ?
+--> Oui car on veut que les agents soient triés par ordre d'id
+
+## 10.2.2 Comparator
+Regardez le code commenté de la méthode toString du monde.
+Afin de faciliter l'affichage, il serait préférable de disposer d'un TreeSet triant d'abord sur la coordonnée x puis en second sur la coordonnée y.
+Ainsi (3,2) est avant (10,1) ; (3,6) est avant (3,8) ; on choisira en cas d'égalité de coordonnées que la deuxième viendra après la première dans la liste.
+1. créez un comparateur CoordComparator qui implémente Comparator<Agent> dans une classe indépendante (ne faites pas de classe interne dans monde).
+--> code ci dessous
+```java
+public class CoordComparator implements Comparator<Agent> {
+    @Override
+    public int compare(Agent a1, Agent a2) {
+        if (a1.getCoord().getX() == a2.getCoord().getX()) {
+            return a1.getCoord().y - a2.getCoord().y;
+        } else {
+            return a1.getCoord().x - a2.getCoord().x;
+        }
+    }
+}
+```
+
+# 12.2 Implémentez les fonctionnalités suivantes
+
+## 12.2.1 Rencontre entre Agent
+
+### 12.2.1.1 Approche naïve
+1. Créez une méthode gererRencontre() dans le monde qui, pour chacun des agents, renvoie une liste des agents qu'il peut rencontrer (on les appellera les voisins de l'agent).
+--> code ci dessous
+```java
+```
+
+2. Appeler la méthode rencontrer de l'agent avec chacun de ses voisins.
+3. Quels sont les problèmes que posent cette approche ?
+4. Proposez un tri de la collection d'Agent du monde qui corrige un de ses problèmes.
+Une approche plus performante est proposée en 21.2 (Cartographie du monde).
+
+## 12.3.1. Mode nuit et Hebergeurs
+Un hebergeur doit donc pouvoir transmettre ses coordonnées.
+1. Est-ce un problème d'ajouter une méthode getCoord() à Hebergeur alors que certains Herbergeurs (Agents) ont déjà cette méthode héritée d'Agent ? Pourquoi ?
+--> Oui car on ne peut pas avoir deux méthodes avec le même nom dans une classe
+
+2. Qui est responsable du changement de mode ?
+--> Le monde est responsable du changement de mode
+
+3. implémentez cette fonctionnalité.
+--> code ci dessous

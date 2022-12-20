@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import model.agents.Animal;
+import model.agents.Etat;
 import model.agents.Sexe;
 import model.agents.animaux.Abeille;
 import model.agents.animaux.AbeilleDomestique;
@@ -99,5 +100,14 @@ public class Ruche extends Decor implements Hebergeur{
 		new AbeilleDomestique(Sexe.Femelle, new Point(5,10),r);
 		System.out.println(r);
 		*/
+	}
+
+	@Override
+	public void supprimer(Animal a) {
+		// On vérifie que l'état des abeilles est 'Mourant' avec getNiveauSante()
+		if (a.getNiveauSante() == Etat.Mourant){
+			// On supprime l'abeille de la ruche
+			population.remove(a);
+		}
 	}
 }

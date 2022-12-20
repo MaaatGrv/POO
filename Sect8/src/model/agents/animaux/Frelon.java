@@ -8,6 +8,9 @@ import model.agents.Animal;
 import model.agents.Sexe;
 
 public abstract class Frelon extends Animal {
+
+	private int LapRemaining = 10;
+	private boolean faim = false;
 	/**
 	 * list d'objets de type "Class"
 	 * Ces types Class sont paramétrés par <? extends Animal>
@@ -48,10 +51,18 @@ public abstract class Frelon extends Animal {
 		
 	}
 
+
 	@Override
 	protected void seNourrir() {
-		// TODO Auto-generated method stub
-		
+		if (LapRemaining == 0) {
+			aggraverEtat();
+		}
+		if (faim) {
+			LapRemaining--;
+		}
+		else {
+			LapRemaining = 10;
+		}
 	}
 	
 }

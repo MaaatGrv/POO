@@ -155,9 +155,6 @@ public abstract class Animal extends Agent implements Deplacable {
 	}
 	
 	protected final void ameliorerEtat() {
-		/*
-		 * TODO 3 lignes pas plus!
-		 */
 		LinkedList<Etat> liste = new LinkedList<Etat>(Arrays.asList(Etat.values()));
 		Iterator<Etat> it = liste.listIterator(liste.indexOf(etat));
 		if(it.hasNext()) {etat = ((ListIterator<Etat>) it).previous();}

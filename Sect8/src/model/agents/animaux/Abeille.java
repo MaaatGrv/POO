@@ -1,6 +1,8 @@
 package model.agents.animaux;
 
 import java.awt.Point;
+import java.util.HashSet;
+import java.util.Set;
 
 import model.agents.Agent;
 import model.agents.Animal;
@@ -29,6 +31,10 @@ public abstract class Abeille extends Animal implements Hebergeur{
 	 */
 	private static final int qteMax = 10;
 
+	private int LapRemaining = 10;
+
+	private static final Set<Varroa> parasites = new HashSet<Varroa>();
+	
 	public Abeille(Sexe s, Point p, Ruche r) {
 	}
 	
@@ -45,7 +51,10 @@ public abstract class Abeille extends Animal implements Hebergeur{
 		 */
 		if(a instanceof Vegetal && qteMiel<Abeille.qteMax) {
 			Vegetal v = (Vegetal)a;
-			qteMiel = qteMiel + v.getPortionNectar();
+			if (v.getPortionNectar() != 0) {
+				qteMiel = qteMiel + v.getPortionNectar();
+				v.setPortionNectar(v.getPortionNectar()-1);
+			}
 		}
 		/* rencontre avec un prédateur */
 		else if(a instanceof Frelon && getNiveauSante()!=Etat.Mourant) {
@@ -69,21 +78,35 @@ public abstract class Abeille extends Animal implements Hebergeur{
 			parasite = true;
 			aggraverEtat();
 			ret = true;
+			// add the Animal to the HashSet 'Parasite' : code bellow
 		}
 		return ret;
 	}
-	
 
 	@Override
 	protected void maj() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	protected void seNourrir() {
-		// TODO Auto-generated method stub
-		
+		if (qteMiel == 0) {
+			LapRemaining--;
+		}
+		if (LapRemaining == 0) {
+			aggraverEtat();
+		}
+		if (qteMiel > 0) {
+			qteMiel--;
+			ameliorerEtat();
+			LapRemaining = 10;
+		}
 	}
 
+	@Override
+	public void supprimer(Animal a) {
+		if (a.getNiveauSante() == Etat.Mourant){
+			parasite = false;
+		}
+	}
 }

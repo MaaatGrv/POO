@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import model.agents.Agent;
+import model.agents.Animal;
 //partie 2
 //import model.agents.PointPositif;
 import model.agents.Sexe;
@@ -19,6 +20,7 @@ import model.agents.animaux.Varroa;
 import model.agents.vegetaux.Arbre;
 import model.agents.vegetaux.Fleur;
 import model.decor.Ruche;
+import model.world.CoordComparator;
 
 public class Monde {
 	/**
@@ -37,6 +39,8 @@ public class Monde {
 	 * constante: longueur du monde
 	 */
 	private static int LONGUEUR = 20;
+
+	private static boolean NightMode = false;
 	
 	/**
 	 * 
@@ -165,23 +169,53 @@ public class Monde {
 		String ret="";
 		ret+="******************************\n";
 		ret+="Le monde contient "+agents.size()+" agents:\n";
-		/*
-		 * TODO
-		Set<Agent> coordSet = new TreeSet<Agent>(new CoordComparator());//TODO
+		Set<Agent> coordSet = new TreeSet<Agent>(new CoordComparator());
 		coordSet.addAll(agents);
-		*/
-		for(Agent a:agents) {
+		for(Agent a:coordSet) {
 			ret+="\t"+a+"\n";
 		}
 		return ret;
 	}
 
 	/**
+	 * @return SortedCoordSet
+	 */
+
+	/**
 	 * génère un cycle de vie dans le monde
 	 */
 	public void cycle() {
 		for(Agent a:agents) {
-			a.cycle();
+			if (!NightMode) {
+				a.cycle();
+				gererRencontre(a);
+			}
+			else {
+				//TODO
+			}
 		}
+	}
+
+	/**
+	 * @return renvoie la liste des voisins de l'agent a
+	 * @param a l'agent dont on cherche les voisins
+	 * @param radius le rayon de recherche
+	 * Il y a rencontre si la distance entre deux agents est inférieure à 10
+	 */
+	public Set<Agent> gererRencontre(Agent a) {
+		Set<Agent> voisins = new TreeSet<Agent>(new CoordComparator());
+		int radius = 10;
+		for(Agent b:agents) {
+			if(a!=b) {
+				if(a.getCoord().distance(b.getCoord())<radius) {
+					voisins.add(b);
+					// si l'agent b esr un animal :
+					if (b instanceof Animal && a instanceof Animal)
+						a.rencontrer(b);
+				}
+			}
+		}
+		return voisins;
+		
 	}
 }

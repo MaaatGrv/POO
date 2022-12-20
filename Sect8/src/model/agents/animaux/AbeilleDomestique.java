@@ -14,5 +14,5 @@ public class AbeilleDomestique extends Abeille {
 
 	public AbeilleDomestique(Sexe s, Point p) {
 		super(s, p);
-	}	
+	}
 }

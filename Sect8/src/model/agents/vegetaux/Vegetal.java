@@ -44,4 +44,8 @@ public abstract class Vegetal extends Agent {
 		return ret;
 	}
 
+	public void setPortionNectar(int qteNectar) {
+		this.qteNectar = qteNectar;
+	}
+
 }
