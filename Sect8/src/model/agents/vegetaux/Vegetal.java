@@ -21,8 +21,7 @@ public abstract class Vegetal extends Agent {
 
 	@Override
 	protected void maj() {
-		// TODO Auto-generated method stub
-		
+		produire(); // Le vegetal produit du nectar
 	}
 
 	@Override
