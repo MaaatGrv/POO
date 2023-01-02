@@ -130,7 +130,7 @@ public abstract class Animal extends Agent implements Deplacable {
 		return ret;
 	}
 	
-	protected final void aggraverEtat() {
+	public final void aggraverEtat() {
 		/* détail sur plusieurs lignes de:
 		 * 	LinkedList<Etat> liste = new LinkedList<Etat>(Arrays.asList(Etat.values()));
 
@@ -138,7 +138,7 @@ public abstract class Animal extends Agent implements Deplacable {
 		List<Etat> listeEtat = Arrays.asList(tableauEtat);
 		LinkedList<Etat> liste = new LinkedList<Etat>(listeEtat);
 		*/
-		LinkedList<Etat> liste = new LinkedList<Etat>(Arrays.asList(Etat.values()));
+		
 		// ArrayList<Etat> liste = new ArrayList<Etat>(Arrays.asList(Etat.values()));
 		/* détail de
 		 * Iterator<Etat> it = liste.listIterator(liste.indexOf(etat));
@@ -150,11 +150,13 @@ public abstract class Animal extends Agent implements Deplacable {
 			if(it.next().equals(this.etat)) {trouve=true;}
 		}
 		*/
+		LinkedList<Etat> liste = new LinkedList<Etat>(Arrays.asList(Etat.values()));
 		Iterator<Etat> it = liste.listIterator(liste.indexOf(etat));
+		if(it.hasNext()) {etat = it.next();}
 		if(it.hasNext()) {etat = it.next();}	
 	}
 	
-	protected final void ameliorerEtat() {
+	public final void ameliorerEtat() {
 		LinkedList<Etat> liste = new LinkedList<Etat>(Arrays.asList(Etat.values()));
 		Iterator<Etat> it = liste.listIterator(liste.indexOf(etat));
 		if(it.hasNext()) {etat = ((ListIterator<Etat>) it).previous();}

@@ -12,16 +12,18 @@ import model.decor.Ruche;
 import model.agents.Sexe;
 import model.agents.animaux.Abeille;
 import model.agents.animaux.AbeilleDomestique;
-import model.world;
+import model.world.Monde;
 public class test {
     public static void main(String[] args) {
         // Test aggraverEtat with the class Abeille
-        // AbeilleDomestique abeille = new AbeilleDomestique(Sexe.Femelle, new Point(0, 0));
-        // System.out.println(abeille.getEtat());
-        // System.out.println("On aggrave l'état de l'abeille...");
-        // abeille.ameliorerEtat();
-        // // abeille.aggraverEtat();
-        // System.out.println(abeille.getEtat());
+        AbeilleDomestique abeille = new AbeilleDomestique(Sexe.Femelle, new Point(0, 0));
+        System.out.println(abeille.getNiveauSante());
+        System.out.println("On aggrave l'état de l'abeille...");
+        abeille.aggraverEtat();
+        System.out.println(abeille.getNiveauSante());
+        System.out.println("On amméliore l'état de l'abeille...");
+        abeille.ameliorerEtat();
+        System.out.println(abeille.getNiveauSante());
 
         // Test accueillir with the class Ruche
         // Ruche ruche = new Ruche(new Point(0, 0));
@@ -76,6 +78,6 @@ public class test {
         // // Print the id of the abeille
         // System.out.println(abeille.getId());
 
-        // Test de rencontre
+        // Test d'état de l'abeille
     }
 }
