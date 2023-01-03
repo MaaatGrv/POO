@@ -11,6 +11,7 @@ import java.util.ListIterator;
 
 import model.comportements.Deplacable;
 import model.comportements.Hebergeur;
+import model.agents.PointPositif;
 
 /**
  * Cette classe modélise un Animal dans la simulation

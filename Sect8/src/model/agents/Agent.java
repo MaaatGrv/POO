@@ -3,6 +3,9 @@ package model.agents;
 import java.awt.Point;
 
 import model.comportements.Deplacable;
+import model.comportements.Dessinable;
+
+import model.agents.PointPositif;
 
 /**
  * Cette classe modélise un Agent, c'est à dire un élément du monde qui est vivant ET 
@@ -13,7 +16,7 @@ import model.comportements.Deplacable;
  * @author bruno
  *
  */
-public abstract class Agent implements Comparable<Agent>, Cloneable{//implements Cloneable, Comparable<Agent>
+public abstract class Agent implements Comparable<Agent>, Cloneable, Dessinable{//implements Cloneable, Comparable<Agent>
 	
 	/* attributs de classe */
 	private static int currentId = 0;
@@ -77,15 +80,14 @@ public abstract class Agent implements Comparable<Agent>, Cloneable{//implements
 		// return new Point(coord);
 		return (Point) coord.clone();
 	}
-	/* partie 2 et 3
-	public PointPositif getCoord() {
+	/* partie 2 et 3*/
+	// public PointPositif getCoord() {
 		
-		//version 1
-		return new PointPositif(new Point(coord.getX(),coord.getY()));
-		// ou version 2
-		//return (PointPositif) coord.clone();
-	}
-	*/
+	// 	//version 1
+	// 	return new PointPositif(new Point(coord.x,coord.y));
+	// 	// ou version 2
+	// 	//return (PointPositif) coord.clone();
+	// }
 	
 	/**
 	 * age doit être un entier positif
@@ -197,4 +199,8 @@ public abstract class Agent implements Comparable<Agent>, Cloneable{//implements
 	}
 
 	public abstract Object clone();
+
+	public String getImage() {
+		return "images/" + getClass().getSimpleName() + ".png";
+	}
 }

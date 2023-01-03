@@ -2,10 +2,13 @@ package model.decor;
 
 import java.awt.Point;
 
+import model.agents.PointPositif;
+import model.comportements.Dessinable;
+
 //partie 2
 //import model.agents.PointPositif;
 
-public abstract class Decor{
+public abstract class Decor implements Dessinable{
 	/**
 	 * coordonnées de l'élément de décor
 	 */
@@ -21,14 +24,19 @@ public abstract class Decor{
 		//coord = new PointPositif(p);
 	}
 	
-	/* partie 2
+	/* partie 2*/
 	public PointPositif getCoord() {
 		return (PointPositif)coord.clone();
 	}
-	*/
+	
 	//partie 1
-	public Point getCoord() {
-		return new Point(coord);
+	// public Point getCoord() {
+	// 	return new Point(coord);
+	// }
+
+
+	public String getImage() {
+		return "images/" + getClass().getSimpleName() + ".png";
 	}
 
 }
