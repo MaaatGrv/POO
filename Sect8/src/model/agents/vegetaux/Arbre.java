@@ -1,6 +1,7 @@
 package model.agents.vegetaux;
 
 import java.awt.Point;
+import java.util.HashSet;
 
 import model.agents.Agent;
 import model.agents.Animal;
@@ -10,9 +11,15 @@ import model.comportements.Hebergeur;
 
 public class Arbre extends Vegetal implements Hebergeur{
 
+	/**
+	 * Liste des hébergés de l'arbre
+	 */
+	protected HashSet<Animal> population;
+
 	public Arbre(Point point, double taille) {
 		super(point);
 		this.taille=taille;
+		population = new HashSet<Animal>();
 	}
 
 	private double taille = 1.0;
@@ -20,7 +27,21 @@ public class Arbre extends Vegetal implements Hebergeur{
 	
 	@Override
 	public boolean peutAccueillir(Animal a) {
-		return (a instanceof AbeilleSolitaire || a instanceof Frelon)&&nbHeberges<getMaxHeberges();
+		// return (a instanceof AbeilleSolitaire || a instanceof Frelon)&&nbHeberges<getMaxHeberges();
+		if (a instanceof AbeilleSolitaire || a instanceof Frelon){
+			if (population != null){
+				if (getMaxHeberges() >= population.size()){
+					//verify that the bee is not already in the hive
+					if (population.contains(a)){
+						return false;
+					}
+					else{
+						return true;
+					}
+				}
+			}
+		}
+		return false;
 	}
 
 	private int getMaxHeberges() {
@@ -33,6 +54,7 @@ public class Arbre extends Vegetal implements Hebergeur{
 		if(peutAccueillir(a)) {
 			nbHeberges++;
 			ret=true;
+			population.add(a);
 		}
 		return ret;
 	}
@@ -45,5 +67,10 @@ public class Arbre extends Vegetal implements Hebergeur{
 	@Override
 	public void supprimer(Animal a) {
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public Object clone() {
+		return new Arbre(new Point(getCoord()), this.taille);
 	}
 }

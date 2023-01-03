@@ -112,57 +112,11 @@ public class Monde {
 		for(int i=0;i<nbAgents;i++) {
 			int alea = (int)(Math.random()*100);
 			//partie 2
-			//ts.add((Agent)tirage(alea).clone());
+			ts.add((Agent)tirage(alea).clone());
 			//partie 1
-			ts.add(copieAgent(tirage(alea)));
+			// ts.add(copieAgent(tirage(alea)));
 		}
 		return ts;
-	}
-	/**
-	 * à supprimer dès la partie deux lorsqu'il devient possible de
-	 * cloner les agents
-	 * place toutes les abeilles dans la même ruche
-	 * les arbres ont tous la même taille
-	 * ne respecte pas les bonnes pratiques (switch case sur le type) 
-	 * @param tirage
-	 * @return
-	 */
-	private Agent copieAgent(Agent tirage) {
-		// TODO Auto-generated method stub
-		Ruche ruche =new Ruche(new Point(10,50));
-		Agent ret = null;
-		String classeAgentName = tirage.getClass().getSimpleName();
-		switch(classeAgentName) {
-			case "AbeilleDomestique":
-				AbeilleDomestique ad = (AbeilleDomestique) tirage;
-				ret = new AbeilleDomestique(ad.getSexe(),ad.getCoord(),ruche);
-				break;
-			case "AbeilleSolitaire":
-				AbeilleSolitaire as = (AbeilleSolitaire) tirage;
-				ret = new AbeilleSolitaire(as.getSexe(),as.getCoord());
-				break;
-			case "FrelonEuropeen":
-				FrelonEuropeen fe = (FrelonEuropeen) tirage;
-				ret = new FrelonEuropeen(fe.getSexe(),fe.getCoord());
-				break;
-			case "FrelonAsiatique":
-				FrelonAsiatique fa = (FrelonAsiatique) tirage;
-				ret = new FrelonAsiatique(fa.getSexe(),fa.getCoord());
-				break;
-			case "Varroa":
-				Varroa v = (Varroa) tirage;
-				ret = new Varroa(v.getSexe(),v.getCoord());
-				break;
-			case "Arbre":
-				Arbre a = (Arbre) tirage;
-				ret = new Arbre(a.getCoord(),1.0);
-				break;
-			default:
-				Fleur f = (Fleur) tirage;
-				ret = new Fleur(f.getCoord());
-				break;
-		}
-		return ret;
 	}
 
 	public String toString() {

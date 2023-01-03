@@ -171,3 +171,44 @@ Un hebergeur doit donc pouvoir transmettre ses coordonnées.
 
 3. implémentez cette fonctionnalité.
 --> code ci dessous
+
+# 14. Héritage et abstraction : les classes abstraites
+
+1. Indiquez quelles classes sont astraites dans la hiérarchie ?
+--> Les classes Agent, Abeille, Frelon, Vegetal, Animal sont abstraites
+
+3. Nous avons vu que seuls les Animaux se déplacent en section 6.3.5. Comment leur imposer de disposer d'une méthode seDeplacer sans pour autant expliquer comment un animal se déplace dans la classe Animal ?
+--> En créant une interface Deplacable dont hérite les animaux 
+
+
+# 15. Techniques et mises en œuvre s'appuyant fortement sur la POO
+
+## 15.1. Clonage : comment améliorer l'encapsulation ?
+
+### 15.1.1. Clonage d'un Point
+
+3. quelle différence y a-t-il entre les deux manières de protéger coord ? Laquelle est la meilleure d'un point de vue Objet ?
+--> La première méthode est la meilleure car on peut modifier les coordonnées de la copie sans modifier les coordonnées de l'objet original
+
+### 15.1.2. Clonage d'un Agent
+
+## 15.2. Template Method canonique
+
+1. la méthode cycle() de la classe Agent est-elle redéfinissable par ses héritiers ? Pourquoi ?
+--> Non car la méthode cycle() est déclarée comme final dans la classe Agent et donc elle ne peut pas être redéfinie
+
+# 16. Étude du code
+
+## 16.1. Génération automatique des Agents du Monde
+
+2. Comment fonctionne le mécanisme de génération des Agents ?
+--> Le mécanisme de génération des Agents fonctionne en créant un tableau de probabilités qui contient les probabilités de créer un agent de chaque type. On choisit un nombre aléatoire entre 0 et 1 et on regarde dans le tableau de probabilités à quelle indice il correspond. On crée alors un agent de ce type à la position choisie aléatoirement.
+
+3. Sur quels objets de l'API Collection repose-t-il ? Pourquoi avoir fait ce choix ?
+--> Le tableau de probabilités repose sur la classe ArrayList. On a fait ce choix car on a besoin d'un tableau dynamique qui peut contenir des doubles.
+
+4. comment est initialisé la table de statistiques ? que comporte-t-elle ?
+--> La table de statistiques est initialisée dans le constructeur de la classe Monde. Elle comporte un tableau de 4 cases qui contient le nombre d'abeilles, de frelons, de végétaux et d'animaux.
+
+5. comparez ce que vous avez commenté et dé-commenté : quel est l'avantage de la nouvelle solution ?
+--> L'avantage de la nouvelle solution est que l'on peut facilement ajouter un nouvel agent en ajoutant simplement une nouvelle case dans le tableau de probabilités.

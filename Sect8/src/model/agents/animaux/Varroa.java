@@ -42,4 +42,9 @@ public class Varroa extends Animal {
 	public void seDeplacer() {
 		//TODO
 	}
+
+	@Override
+	public Object clone() {
+		return new Varroa(getSexe(), new Point(getCoord()));
+	}
 }

@@ -15,4 +15,9 @@ public class AbeilleDomestique extends Abeille {
 	public AbeilleDomestique(Sexe s, Point p) {
 		super(s, p);
 	}
+	
+	@Override
+	public Object clone() {
+		return new AbeilleDomestique(getSexe(), new Point(getCoord()), (Ruche)hebergeur);
+	}
 }

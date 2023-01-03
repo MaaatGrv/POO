@@ -15,4 +15,9 @@ public class Fleur extends Vegetal {
 	public void produire() {
 		qteNectar+=1;
 	}
+
+	@Override
+	public Object clone() {
+		return new Fleur(new Point(getCoord()));
+	}
 }

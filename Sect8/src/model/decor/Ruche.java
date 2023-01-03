@@ -14,18 +14,17 @@ import model.comportements.Hebergeur;
 public class Ruche extends Decor implements Hebergeur{
 	
 	/**
-	 * Liste des abeilles de la ruche 
+	 * Collection des abeilles de la ruche
 	 */
-	//private TODO population;
+	protected HashSet<Abeille> population;
 	/**
 	 * constante taille maximale de la ruche
 	 */
 	private static int populationMax = 1000;
 
 	/**
-	 *Collection des abeilles de la ruche
+	 * Q
 	 */
-	protected HashSet<Abeille> population;
 	
 	public Ruche(Point p) {
 		super(p);

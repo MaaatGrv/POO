@@ -12,6 +12,11 @@ public class FrelonEuropeen extends Frelon {
 		proies.add(FrelonAsiatique.class);
 	}
 
+	@Override
+	public Object clone() {
+		return new FrelonEuropeen(getSexe(), new Point(getCoord()));
+	}
+
 	/* inutile avec la liste de proies à partir des collections
 	@Override
 	public void rencontrer(Agent a) {
